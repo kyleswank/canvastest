@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Image Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        #imageCanvas {
+            width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Canvas Image Display Test</h1>
+    <canvas id="imageCanvas" width="800" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('imageCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Create a test image
+        const img = new Image();
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0, 800, 600);
+        };
+
+        // Using a placeholder image service for testing
+        img.src = 'https://picsum.photos/800/600';
+
+        // Alternative: Create a simple colored rectangle if no internet
+        img.onerror = function() {
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(0, 0, 800, 600);
+            ctx.fillStyle = '#fff';
+            ctx.font = '48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Test Image', 400, 300);
+        };
+    </script>
+</body>
+</html>
